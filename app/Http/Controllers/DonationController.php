@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class DonationController extends Controller
 {
     public function index(){
-        $donations = Donation::all();
+        $donations = Donation::paginate(10);
         return view('donationsIndex', compact('donations'));
     }
 

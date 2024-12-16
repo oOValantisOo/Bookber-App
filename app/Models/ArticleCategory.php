@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArticleCategory extends Model
 {
     use HasFactory;
-    protected $table = 'ArticleCategories';
+    protected $table = 'article_categories';
     public $timestamps = false;
     protected $primaryKey = 'ArticleCategoryId';
     protected $fillable = [

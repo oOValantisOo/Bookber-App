@@ -39,7 +39,7 @@ class BookCategoryController extends Controller
     public function getCategoryById($id){
         $category = BookCategory::where('BookCategoryId','=', $id)->first();
         $books = Book::where('BookCategoryId', '=', $id)->get();
-        return view('bookCategory', compact('book_category', 'books'));
+        return view('books.book-category', compact('book_category', 'books'));
     }
 
     public function getCategoryByName($name){

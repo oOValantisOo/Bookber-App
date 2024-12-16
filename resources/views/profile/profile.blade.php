@@ -1,6 +1,6 @@
 @extends('alayouts1.adefault1')
 
-@section('title1', 'HomeG')
+@section('title1', 'Profile')
 
 @section('content1')
 <main>
@@ -38,10 +38,12 @@
                         </a>
 
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="ahome" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="ahome">About us</a></li>
-                            <li class="scroll-to-section"><a href="ahome">Event</a></li>
-                            <li class="scroll-to-section"><a href="#">Donation</a></li>
+                            <li class="scroll-to-section"><a href="ahome">Home</a></li>
+                            <li class="scroll-to-section"><a href="/ahome#about-us">About us</a></li>
+                            <li class="scroll-to-section"><a href="aevent">Event</a></li>
+                            <li class="scroll-to-section"><a href="abook">Books</a></li>
+                            <li class="scroll-to-section"><a href="aarticles">Articles</a></li>
+                            <li class="scroll-to-section"><a href="adonation">Donation</a></li>
                             <li><a href="#" class="actived">Profile <img src="{{ asset('images/profile-header.jpg') }}" alt="Profile Picture"></a></li>
 
                         </ul>   
@@ -75,6 +77,9 @@
                           <h4>Alan Smithee</h4>
                           <p>This is your profile, check it out!</p>
                           <div class="main-border-button">
+                            <a href="aupdateProfile">Update Profile</a>
+                          </div>
+                          <div class="main-border-button1">
                             <a href="/">Logout</a>
                           </div>
 

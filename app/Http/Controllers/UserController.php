@@ -8,19 +8,71 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Event;
+use Exception;
 
-class AccountsController extends Controller
+class UserController extends Controller
 {
-    function home(){
-        return view("home-guest-home.ahome");
+    function updateProfile(){
+        return view("profile.update_profile");
+    }
+    function profile(){
+        return view("profile.profile");
     }
 
-    function homeG(){
+    function homeGuest(){
+        return view("home.home-guest");
+    }
+
+    function homeUser(){
         return view("home-guest-home.ahomeG");
     }
 
+    public function googlepage(){
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function googlecallback(){
+        try {
+      
+            $account = Socialite::driver('google')->user();
+       
+            $findaccount = User::where('google_id', $account->id)->first();
+       
+            if($findaccount)
+
+            {
+       
+                Auth::login($findaccount);
+      
+                return redirect()->intended('ahome');
+       
+            }
+
+            else
+
+            {
+                $newAccount = Accounts::create([
+                    'name' => $account->name,
+                    'email' => $account->email,
+                    'google_id'=> $account->id,
+                    'password' => encrypt('123456dummy')
+                ]);
+      
+                Auth::login($newAccount);
+      
+                return redirect()->intended('ahome');
+            }
+      
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
     function resetPassword($token){
-        return view("account-login-register.anew-password", compact('token'));
+        return view("login_register.new-password", compact('token'));
     }
 
     function resetPasswordPost(Request $request){
@@ -30,20 +82,20 @@ class AccountsController extends Controller
         ])->first();
 
         if (!$updatePassword){
-            return redirect()->to(route('aresetPassword'))
+            return redirect()->to(route('resetPassword'))
             ->with('error', 'yah ngak bisa ganti password!');
         }
 
-        Accounts::where('email',$request->email)->update(['password' => $request->password]);
+        User::where('email',$request->email)->update(['password' => $request->password]);
 
         DB::table('password_reset_tokens')->where(['email' => $request->email])->delete();
 
-        return redirect()->to(route('alogin'))
+        return redirect()->to(route('login'))
         ->with('success', 'yey bisa ganti password!');
     }
 
     function forgetPassword(){
-        return view("account-login-register.aforget-password");
+        return view("login_register.forgot-password");
     }
 
     function forgetPasswordPost(Request $request){
@@ -55,32 +107,38 @@ class AccountsController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        Mail::send("account-login-register.areset-password", ['token' => $token], function ($message) use ($request){
+        Mail::send("login_register.reset-password", ['token' => $token], function ($message) use ($request){
             $message->to($request->email);
             $message->subject("Reset Password");
         });
 
-        return redirect()->to(route('alogin')) 
+        return redirect()->to(route('login')) 
         ->with('success', 'yey link email udh di kirim!');
     }
 
     function login(){
-        return view("account-login-register.alogin");
+        return view("login_register.login");
     }
 
     function loginPost(Request $request){
-        $account = Accounts::where('email','=',$request->email)->first();
+        $account = User::where('email','=',$request->email)->first();
         if($account && $request->password == $account->password){
+            session(['user_name' => $account->name]);
             return redirect(route('ahome'))
-            ->with('success', 'yey bisa login!');
+            ->with('success', 'Selamat Datang, ' . $account->name . '!');
         }else{
-            return redirect(route('alogin'))
+            return redirect(route('login'))
             ->with('error', 'yah ngak bisa login!');
         }
     }
 
     function register(){
-        return view("account-login-register.aregister");
+        return view("login_register.register");
+    }
+
+    function registerNotif(){
+        return redirect(route('register'))
+        ->with('success', 'silahkan melakukan register terlebih dahulu');
     }
 
     function registerPost(Request $request){
@@ -90,26 +148,11 @@ class AccountsController extends Controller
         $account->password = $request->password;
         $account->phone_number = $request->phone_number;
         if($account->save()){
-            return redirect(route('alogin'))
+            return redirect(route('login'))
             ->with('success', 'yey bisa regis!');
         }else{
             return redirect(route('aregister'))
             ->with('error', 'yah ngak bisa regis!');
         }
-    }
-
-    public function updateProfile(Request $request, $id){
-        
-    }
-
-    public function logout(Request $request): RedirectResponse
-    {
-        Auth::logout();
- 
-        $request->session()->invalidate();
- 
-        $request->session()->regenerateToken();
- 
-        return redirect('/');
     }
 }

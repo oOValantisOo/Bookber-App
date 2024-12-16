@@ -3,18 +3,25 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [AccountsController::class, 'homeG']) ->name('ahomeG');
-Route::get('/ahome', [AccountsController::class, 'home']) ->name('ahome');
+Route::get('/', [UserController::class, 'homeGuest']) ->name('guest.home');
+Route::get('/home', [UserController::class, 'homeUser']) ->name('user.home');
 
-Route::get('/anew-password/{token}', [AccountsController::class, 'resetPassword'])->name('anew-password');
-// Route::get('/aresetPassword/{token}', [AccountsController::class, 'resetPassword']) ->name('aresetPassword');
-Route::post('/aresetPassword', [AccountsController::class, 'resetPasswordPost']) ->name('aresetPassword.post');
+Route::get('/profile', [UserController::class, 'profile']) ->name('user.profile');
 
-Route::get('/aforgetPassword', [AccountsController::class, 'forgetPassword']) ->name('aforgetPassword');
-Route::post('/aforgetPassword', [AccountsController::class, 'forgetPasswordPost']) ->name('aforgetPassword.post'); 
+Route::get('/updateProfile', [UserController::class, 'updateProfile']) ->name('user.update_profile');
 
-Route::get('/alogin', [AccountsController::class, 'login']) ->name('alogin');
-Route::post('/alogin', [AccountsController::class, 'loginPost']) ->name('alogin.post'); 
+Route::get('/auth/google', [UserController::class, 'googlepage'])->name('google.page');
+Route::get('/auth/google/callback', [UserController::class, 'googlecallback'])->name('google.callback');
 
-Route::get('/aregister', [AccountsController::class, 'register'])->name('aregister');
-Route::post('/aregister', [AccountsController::class, 'registerPost']) ->name('aregister.post'); 
+Route::get('/new-password/{token}', [UserController::class, 'resetPassword'])->name('new-password');
+Route::post('/resetPassword', [UserController::class, 'resetPasswordPost']) ->name('resetPassword.post');
+
+Route::get('/forgetPassword', [UserController::class, 'forgetPassword']) ->name('forgetPassword');
+Route::post('/forgetPassword', [UserController::class, 'forgetPasswordPost']) ->name('forgetPassword.post'); 
+
+Route::get('/login', [UserController::class, 'login']) ->name('login');
+Route::post('/login', [UserController::class, 'loginPost']) ->name('login.post'); 
+
+Route::get('/registerNotif', [UserController::class, 'registerNotif'])->name('registerNotif');
+Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/register', [UserController::class, 'registerPost']) ->name('register.post'); 

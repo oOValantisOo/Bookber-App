@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventCategory;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
     public function index(){
-        $events = Event::all();
-        return view('eventsIndex', compact('events'));
+        $events = Event::paginate(10);
+        $categories = EventCategory::all();
+        return view('events.events-user', compact('events', 'categories'));
     }
 
     public function create(){

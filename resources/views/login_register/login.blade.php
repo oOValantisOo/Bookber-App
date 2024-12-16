@@ -1,4 +1,4 @@
-@extends('alayouts.adefault')
+@extends('layouts.master')
 
 @section('title', 'Login')
 
@@ -40,7 +40,7 @@
                     Sign in with Google
                 </button>
 
-                <form action="{{ route('alogin.post') }}" method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" onsubmit="return loginForm()">
+                <form action="{{ route('login.post') }}" method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" onsubmit="return loginForm()">
                     @csrf
                     <div class="flex items-center mb-3">
                         <hr class="h-0 border-b border-solid border-fern-green grow">

@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
     public function index()
-    {
-        $articles = Article::all(); 
-        return view('articlesIndex', compact('articles')); 
-    }
+{
+    $articles = Article::paginate(10); 
+    return view('articlesIndex', compact('articles'));
+}
 
     public function create()
     {

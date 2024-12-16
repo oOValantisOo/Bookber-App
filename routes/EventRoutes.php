@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Eventontroller;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +14,7 @@ Route::put('/update-event/{id}', [EventController::class, 'update'])->name('even
 Route::get('/update-event-page/{id}', [EventController::class, 'updatePage'])->name('event.update-page');
 Route::delete('/delete-event-event/{id}', [EventController::class, 'delete'])->name('event.delete');
 
-Route::get('/event-index', [EventCategoryController::class, 'index'])->name('event-category.all');
+Route::get('/event-category-index', [EventCategoryController::class, 'index'])->name('event-category.all');
 Route::post('/create-event-category', [EventCategoryController::class, 'store'])->name('category.create');
 Route::get('/create-event-category-page', [EventCategoryController::class, 'create'])->name('event-category.create-page');
 Route::get('/get-event-category/{id}', [EventCategoryController::class, 'getCategoryById'])->name('event-category.get');

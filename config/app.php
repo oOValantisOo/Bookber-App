@@ -105,6 +105,10 @@ return [
         ),
     ],
 
+    'aliases' => [
+    'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver

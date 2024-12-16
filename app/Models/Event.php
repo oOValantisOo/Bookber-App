@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model{
-    protected $table = 'Event';
+    protected $table = 'events';
     use HasFactory;
     protected $primaryKey = 'EventId';
     public $timestamps = false;

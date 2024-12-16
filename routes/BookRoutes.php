@@ -14,8 +14,8 @@ Route::put('/update-book/{id}', [bookController::class, 'update'])->name('book.u
 Route::get('/update-book-page/{id}', [BookController::class, 'updatePage'])->name('book.update-page');
 Route::delete('/delete-book-book/{id}', [BookController::class, 'delete'])->name('book.delete');
 
-Route::get('/book-index', [BookCategoryController::class, 'index'])->name('book-category.all');
-Route::post('/create-book-category', [BookCategoryController::class, 'store'])->name('category.create');
+Route::get('/book-category-index', [BookCategoryController::class, 'index'])->name('book-category.all');
+Route::post('/create-book-category', [BookCategoryController::class, 'store'])->name('book-category.create');
 Route::get('/create-book-category-page', [BookCategoryController::class, 'create'])->name('book-category.create-page');
 Route::get('/get-book-category/{id}', [BookCategoryController::class, 'getCategoryById'])->name('book-category.get');
 Route::get('/get-all-book-categories', [BookCategoryController::class, 'index'])->name('book-categories.getAll');

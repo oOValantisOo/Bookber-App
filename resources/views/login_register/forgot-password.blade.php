@@ -22,7 +22,7 @@
     <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
         <div class="flex items-center justify-center w-full lg:p-12">
             <div class="bg-white shadow-2xl border border-gray-300 rounded-3xl p-8">
-                <form action="{{ route('aforgetPassword.post') }}" method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" onsubmit="return forgetPasswordForm()">
+                <form action="{{ route('forgetPassword.post') }}" method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" onsubmit="return forgetPasswordForm()">
                     @csrf
                     <h3 class="mb-5 text-4xl font-extrabold text-kelly-green">
                         Forget Password
@@ -49,7 +49,7 @@
 
                     <p class="text-sm leading-relaxed text-fern-green">
                         Already Remember? 
-                        <a href="alogin" class="font-bold text-fern-green hover:underline">Go back!</a>
+                        <a href="login" class="font-bold text-fern-green hover:underline">Go back!</a>
                     </p>
                 </form>
             </div>

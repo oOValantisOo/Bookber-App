@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class BookCategory extends Model
 {
     use HasFactory;
-    protected $table = 'BookCategory';
+    protected $table = 'book_categories';
     public $timestamps = false;
     protected $primaryKey = 'BookCategoryId';
     protected $fillable = [

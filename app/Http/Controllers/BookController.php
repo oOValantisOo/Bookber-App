@@ -10,8 +10,9 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::all(); 
-        return view('booksIndex', compact('books')); 
+        $books = Book::paginate(10); 
+        $book_categories = BookCategory::all();
+        return view('books.books-user', compact('books', 'book_categories'));
     }
 
     public function create()
@@ -40,12 +41,12 @@ class BookController extends Controller
         return redirect()->route('booksIndex')->with('success', 'Book created successfully!');
     }
 
-    public function showBook($id)
+    public function getBookById($id)
     {
         $book = Book::find($id); 
 
         if ($book) {
-            return view('book', compact('book'));
+            return view('books.book-details', compact('book'));
         } else {
             return redirect()->route('booksIndex')->with('error', 'Book not found!');
         }

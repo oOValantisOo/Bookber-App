@@ -14,7 +14,7 @@ Route::put('/update-article/{id}', [ArticleController::class, 'update'])->name('
 Route::get('/update-article-page/{id}', [ArticleController::class, 'updatePage'])->name('article.update-page');
 Route::delete('/delete-article-article/{id}', [ArticleCategory::class, 'delete'])->name('article.delete');
 
-Route::get('/article-index', [ArticleCategoryController::class, 'index'])->name('article-category.all');
+Route::get('/article-category-index', [ArticleCategoryController::class, 'index'])->name('article-category.all');
 Route::post('/create-article-category', [ArticleCategoryController::class, 'store'])->name('category.create');
 Route::get('/create-article-category-page', [ArticleCategoryController::class, 'create'])->name('article-category.create-page');
 Route::get('/get-article-category/{id}', [ArticleCategoryController::class, 'getCategoryById'])->name('article-category.get');

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model{
     use HasFactory;
-    protected $table = 'Articles';
+    protected $table = 'articles';
     protected $primaryKey = 'ArticleId';
     public $timestamps = false;
     protected $fillable = [
