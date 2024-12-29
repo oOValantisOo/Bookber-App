@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\ArticleCategory;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -10,7 +11,8 @@ class ArticleController extends Controller
     public function index()
 {
     $articles = Article::paginate(10); 
-    return view('articlesIndex', compact('articles'));
+    $article_categories = ArticleCategory::all();
+    return view('articles.articles-guest', compact('articles', 'article_categories'));
 }
 
     public function create()
@@ -43,12 +45,12 @@ class ArticleController extends Controller
         return redirect()->route('articlesIndex')->with('success', 'Article created successfully!');
     }
 
-    public function showArticle($id)
+    public function getArticleById($id)
     {
         $article = Article::find($id); 
 
         if ($article) {
-            return view('article', compact('article'));
+            return view('articles.article', compact('article'));
         } else {
             return redirect()->route('articlesIndex')->with('error', 'Article not found!');
         }

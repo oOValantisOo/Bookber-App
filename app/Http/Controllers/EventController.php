@@ -4,14 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\EventCategory;
+use App\Models\Donation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
-    public function index(){
+    public function indexGuest(){
         $events = Event::paginate(10);
-        $categories = EventCategory::all();
-        return view('events.events-user', compact('events', 'categories'));
+        $event_categories = EventCategory::all();
+        return view('events.events-guest', compact('events', 'event_categories'));
+    }
+
+    public function getLeaderboard($id){
+        $entries = Donation::select('UserId', DB::raw('SUM(Quantity) as total_quantity'))
+        ->where('EventId', $id)
+        ->groupBy('UserId')
+        ->orderByDesc('total_quantity')
+        ->get();
+
+        return $entries;
+    }
+    
+    public function indexUser(){
+        $events = Event::paginate(10);
+        $event_categories = EventCategory::all();
+        return view('events.events-user', compact('events', 'event_categories'));
     }
 
     public function create(){
@@ -19,11 +37,49 @@ class EventController extends Controller
         return view('createEvent', compact('categories'));
     }
 
-    public function getEventById($id){
+    public function getEventByIdUser($id){
         $event = Event::find($id);
+
+        $entries = Donation::select('UserId', DB::raw('SUM(Quantity) as total_quantity'))
+        ->where('EventId', $id)
+        ->groupBy('UserId')
+        ->orderByDesc('total_quantity')
+        ->get();
+
+        $donations = Donation::where('UserId', '=', $id)->get();
+
+        if($event){
+            return view('events.event-user', compact('event', 'entries', 'donations'));
+        } else {
+            return redirect()->route('eventsIndex')->with('error', 'Event not found!');
+        }
+    }
+
+    public function getEventByIdGuest($id){
+        $event = Event::find($id);
+        $entries = Donation::select('UserId', DB::raw('SUM(Quantity) as total_quantity'))
+        ->where('EventId', $id)
+        ->groupBy('UserId')
+        ->orderByDesc('total_quantity')
+        ->get();
         
-        if(event){
-            return view('event', compact('event'));
+        if($event){
+            return view('events.event-guest', compact('event', 'entries'));
+        } else {
+            return redirect()->route('eventsIndex')->with('error', 'Event not found!');
+        }
+    }
+
+    public function getEventByIdAdmin($id){
+        $event = Event::find($id);
+        $entries = Donation::select('UserId', DB::raw('SUM(Quantity) as total_quantity'))
+        ->where('EventId', $id)
+        ->groupBy('UserId')
+        ->orderByDesc('total_quantity')
+        ->get();
+        
+        if($event){
+            return view('events.event-admin', compact('event', 'entries'));
         } else {
             return redirect()->route('eventsIndex')->with('error', 'Event not found!');
         }
@@ -91,7 +147,7 @@ class EventController extends Controller
     public function deleteEvent($id){
         $event = Event::find($id);
 
-        if(event){
+        if($event){
             $event->delete();
             return redirect()->route('event.index')->with('success', 'Event deleted successfully!');
         } else {
@@ -110,14 +166,5 @@ class EventController extends Controller
         return view('eventSearch', compact('events'));
     }
 
-    public function getLeaderboard($id){
-        $entries = Donation::select('UserId', DB::raw('SUM(Quantity) as total_quantity'))
-        ->where('EventId', '=', $id)
-        ->groupBy('UserId')
-        ->orderByDesc('total_quantity')
-        ->get();
-
-        return view('event', compact('entries'));
-    }
 
 }

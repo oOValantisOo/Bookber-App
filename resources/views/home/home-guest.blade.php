@@ -1,35 +1,10 @@
-@extends('layouts1.default')
+@extends('layouts1.guest')
 
 @section('title1', 'HomeG')
 
 @section('content1')
 
-@vite([
-        'resources/css/bootstrap.min.css',
-        'resources/css/bookber.css',
-        'resources/css/owl.css',
-        'resources/css/animate.css',
-        'resources/js/jquery.min.js',
-        'resources/js/custom.js',
-        'resources/js/bookber.js',
-        'resources/js/bootstrap.min.js'
-    ])
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 <main>
-
-    @if(session()->has('success'))
-    <div id="notification" class="notification success">
-        <p>{{ session()->get('success') }}</p>
-    </div>
-    @endif
-
-    @if(session()->has('error'))
-    <div id="notification" class="notification error">
-        <p>{{ session()->get('error') }}</p>
-    </div>
-    @endif
 
     <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
@@ -41,37 +16,6 @@
         </div>
         </div>
     </div>
-
-    <header class="header-area header-sticky">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="main-nav">
-          
-                        <a href="index.html" class="logo">
-                            <h1>Bookber</h1>
-                        </a>
-
-                        <ul class="nav">
-                            <li class="scroll-to-section"><a href="#home" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="#about-us">About us</a></li>
-                            <li class="scroll-to-section"><a href="{{ route('event.all') }}">Events</a></li>
-                            <li class="scroll-to-section"><a href="{{ route('book.all') }}">Books</a></li>
-                            <li class="scroll-to-section"><a href="{{ route('article.all') }}">Articles</a></li>
-                            <li class="scroll-to-section"><a href="{{ route('registerNotif') }}">Donation</a></li>
-                            <li class="scroll-to-section"><a href="login" class="actived">Login Now!</a></li>
-
-                        </ul>   
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
-    
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-
 
     <div class="main-banner" id="home">
         <div class="container">
@@ -216,106 +160,48 @@
                         <h2>Our Events</h2>
                     </div>
                 </div>
-                <!-- Event Items -->
-                <div class="col-lg-12 col-md-6">
-                    <div class="itemDisplay">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-4">
-                                <div class="imageDisplay">
-                                    <img src="images/event-1.jpg" alt="Event 1">
+                <div class="section events" id="events">
+        <div class="container">
+            <div class="row">
+                @foreach($events as $event)
+                    <div class="col-lg-12 col-md-6">
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="image">
+                                        <img src="{{ asset('images/' . $event->image) }}" alt="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-9 col-md-8">
-                                <ul class="event-details">
-                                    <li>
-                                        <span class="categoryDisplay">New Event</span>
-                                        <h4>Event Name</h4>
-                                    </li>
-                                    <li>
-                                        <span>Date:</span>
-                                        <h6>16 Feb 2036</h6>
-                                    </li>
-                                    <li>
-                                        <span>Duration:</span>
-                                        <h6>22 Hours</h6>
-                                    </li>
-                                    <li>
-                                        <span>Price:</span>
-                                        <h6>$120</h6>
-                                    </li>
-                                </ul>
-                                <a href="#"><i class="bi bi-caret-right-fill"></i></a>
+                                <div class="col-lg-9">
+                                    <ul>
+                                        <li>
+                                            <span class="category">{{ $event->category }}</span>
+                                            <h4>{{ $event->EventTitle }}</h4>
+                                        </li>
+                                        <li>
+                                            <span>Description:</span>
+                                            <h6>{{ $event->EventDescription }}</h6>
+                                        </li>
+                                        <li>
+                                            <span>Start:</span>
+                                            <h6>{{ $event->StartDate }}</h6>
+                                        </li>
+                                        <li>
+                                            <span>End:</span>
+                                            <h6>{{ $event->EndDate }}</h6>
+                                        </li>
+                                        <li>
+                                            <span>Category:</span>
+                                            <h6>{{$event->EventCategory->EventCategoryName}}</h6>
+                                        </li>
+                                    </ul>
+                                    <a href="{{ route('event-guest.get', ['id' => $event->EventId]) }}"><i class="bi bi-caret-right-fill"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Copy and adjust other event blocks here -->
-                
-                <div class="col-lg-12 col-md-6">
-                    <div class="itemDisplay">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-4">
-                                <div class="imageDisplay">
-                                    <img src="images/event-2.jpg" alt="Event 1">
-                                </div>
-                            </div>
-                            <div class="col-lg-9 col-md-8">
-                                <ul class="event-details">
-                                    <li>
-                                        <span class="categoryDisplay">New Event</span>
-                                        <h4>Event Name</h4>
-                                    </li>
-                                    <li>
-                                        <span>Date:</span>
-                                        <h6>16 Feb 2036</h6>
-                                    </li>
-                                    <li>
-                                        <span>Duration:</span>
-                                        <h6>22 Hours</h6>
-                                    </li>
-                                    <li>
-                                        <span>Price:</span>
-                                        <h6>$120</h6>
-                                    </li>
-                                </ul>
-                                <a href="#"><i class="bi bi-caret-right-fill"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-12 col-md-6">
-                    <div class="itemDisplay">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-4">
-                                <div class="imageDisplay">
-                                    <img src="images/event-3.jpg" alt="Event 1">
-                                </div>
-                            </div>
-                            <div class="col-lg-9 col-md-8">
-                                <ul class="event-details">
-                                    <li>
-                                        <span class="categoryDisplay">New Event</span>
-                                        <h4>Event Name</h4>
-                                    </li>
-                                    <li>
-                                        <span>Date:</span>
-                                        <h6>16 Feb 2036</h6>
-                                    </li>
-                                    <li>
-                                        <span>Duration:</span>
-                                        <h6>22 Hours</h6>
-                                    </li>
-                                    <li>
-                                        <span>Price:</span>
-                                        <h6>$120</h6>
-                                    </li>
-                                </ul>
-                                <a href="#"><i class="bi bi-caret-right-fill"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+            </div>
 
             </div>
         </div>

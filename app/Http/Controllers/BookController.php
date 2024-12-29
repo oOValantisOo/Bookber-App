@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\BookCategory;
+use App\Models\Donation;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -15,10 +16,11 @@ class BookController extends Controller
         return view('books.books-user', compact('books', 'book_categories'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $donation = Donation::find($request->id);
         $categories = BookCategory::All();
-        return view('createBook', compact('categories'));
+        return view('books.create-book', compact('donation', 'categories'));
     }
 
     public function store(Request $request)
@@ -27,7 +29,8 @@ class BookController extends Controller
             'BookTitle' => 'required|max:255',
             'BookAuthor' => 'required|max:255',
             'ReleaseDate' => 'required|date',
-            'BookCategoryId' => 'required|exists:BookCategory, BookCategoryId'
+            'BookCategoryId' => 'required|exists:book_categories,BookCategoryId',
+            'DonationId' => 'required|exists:donations,DonationId'
         ]);
 
         $data = new Book;
@@ -35,10 +38,11 @@ class BookController extends Controller
         $data->BookAuthor = $request->BookAuthor;
         $data->ReleaseDate = $request->ReleaseDate;
         $data->BookCategoryId = $request->BookCategoryId;
+        $data->DonationId = $request->DonationId;
 
         $data->save();
 
-        return redirect()->route('booksIndex')->with('success', 'Book created successfully!');
+        return redirect()->route('event-user.all');
     }
 
     public function getBookById($id)

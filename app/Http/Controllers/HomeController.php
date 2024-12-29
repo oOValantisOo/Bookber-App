@@ -6,13 +6,27 @@ use App\Models\Book;
 use App\Models\Event;
 use App\Models\Donation;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller{
-    public function getAll(){
-        $events = Event::all();
-        $books = Book::all();
-        $donation = Donation::all();
-        return view('welcome', compact('events', 'books', 'donations'));
+    public function guest(){
+        $events = Event::latest()->take(10)->get();
+        return view('home.home-guest', compact('events'));
+    }
+
+    public function admin(){
+        $events = Event::latest()->take(10)->get();
+        $books = Book::latest()->take(10)->get();  
+        $donations = Donation::latest()->take(10)->get();
+        $users = User::latest()->take(10)->get();
+
+        return view('home.home-admin', compact('events', 'books', 'donations', 'users'));
+    }
+
+
+    public function user(){
+        $events = Event::latest()->take(10)->get();
+        return view('home-user', compact('events'));
     }
 }

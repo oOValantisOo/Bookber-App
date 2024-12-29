@@ -5,24 +5,10 @@
 @section('content')
 <main class="bg-ijosusu flex items-center justify-center min-h-screen">
 
-    @if(session()->has('success'))
-    <div id="notification" class="notification success">
-        <p>{{ session()->get('success') }}</p>
-    </div>
-    @endif
-    
-    @if(session()->has('error'))
-    <div id="notification" class="notification error">
-        <p>{{ session()->get('error') }}</p>
-    </div>
-    @endif
-    
-
-
     <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
         <div class="flex items-center justify-center w-full lg:p-12">
             <div class="bg-white shadow-2xl border border-gray-300 rounded-3xl p-8">
-                <form action="{{ route('aresetPassword.post', ['token' => $token]) }}" method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" onsubmit="return newPasswordForm()">
+                <form action="{{ route('resetPassword.post', ['token' => $token]) }}" method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" onsubmit="return newPasswordForm()">
                     @csrf
                     <input type="text" name="token" value="{{ $token }}" hidden>
 

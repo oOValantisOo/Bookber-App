@@ -30,27 +30,33 @@
     document.addEventListener("DOMContentLoaded", function () {
         const elem = document.querySelector(".book_box");
         const filtersElem = document.querySelector(".book_filter");
-
-        // Initialize Isotope
-        const iso = new Isotope(elem, {
+    
+        let iso = new Isotope(elem, {
             itemSelector: ".book_outer",
             layoutMode: "fitRows",
         });
-
-        // Filter items on click
+    
+        imagesLoaded(elem, function () {
+            iso.layout();
+        });
+    
         filtersElem.addEventListener("click", function (event) {
             if (event.target.tagName !== "A") return;
-            event.preventDefault();
-
+    
             const filterValue = event.target.getAttribute("data-filter");
-            iso.arrange({ filter: filterValue });
-
-            filtersElem
-                .querySelector(".is_active")
-                .classList.remove("is_active");
-            event.target.classList.add("is_active");
+    
+            if (filterValue) {
+                event.preventDefault(); 
+                iso.arrange({ filter: filterValue });
+    
+                filtersElem
+                    .querySelector(".is_active")
+                    .classList.remove("is_active");
+                event.target.classList.add("is_active");
+            }
         });
     });
+    
 
     // const elem = document.querySelector(".book_box");
     // const filtersElem = document.querySelector(".book_filter");

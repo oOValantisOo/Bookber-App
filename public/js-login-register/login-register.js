@@ -158,9 +158,8 @@ function registerForm() {
         valid = false;
     }
 
-    // Validate Password
-    const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
-    if (password.value.length === 0 || !passwordPattern.test(password.value)) {
+    // Validate Password (simplified version)
+    if (password.value.length < 6) { // No regex here, just a length check
         password.classList.add("input-error");
         passwordError.classList.remove("hidden");
         valid = false;
@@ -177,33 +176,36 @@ function registerForm() {
 }
 
 function loginForm() {
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
-    const emailError = document.getElementById("email-error");
-    const passwordError = document.getElementById("password-error");
-
-    let valid = true;
-
-    email.classList.remove("input-error");
-    password.classList.remove("input-error");
-    emailError.classList.add("hidden");
-    passwordError.classList.add("hidden");
-
-    // Validate Email
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailPattern.test(email.value)) {
-        email.classList.add("input-error");
-        emailError.classList.remove("hidden");
-        valid = false;
-    }
-
-    // Validate Password
-    const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
-    if (password.value.length === 0 || !passwordPattern.test(password.value)) {
-        password.classList.add("input-error");
-        passwordError.classList.remove("hidden");
-        valid = false;
-    }
-
-    return valid;
+    function loginForm() {
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const emailError = document.getElementById("email-error");
+        const passwordError = document.getElementById("password-error");
+    
+        let valid = true;
+    
+        email.classList.remove("input-error");
+        password.classList.remove("input-error");
+        emailError.classList.add("hidden");
+        passwordError.classList.add("hidden");
+    
+        // Validate Email
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (email.value !== "admin" && !emailPattern.test(email.value)) {
+            email.classList.add("input-error");
+            emailError.textContent = "Please enter a valid email address or 'admin'.";
+            emailError.classList.remove("hidden");
+            valid = false;
+        }
+    
+        // Validate Password
+        if (password.value.length < 6 && !(email.value === "admin" && password.value === "admin")) {
+            password.classList.add("input-error");
+            passwordError.textContent = "Password must be at least 6 characters.";
+            passwordError.classList.remove("hidden");
+            valid = false;
+        }
+    
+        return valid;
+    }    
 }

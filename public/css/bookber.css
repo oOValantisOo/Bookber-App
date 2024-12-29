@@ -177,12 +177,12 @@ Notification Styles
 .notification p {
     font-size: 14px;
     line-height: 28px;
-    color: white !important; 
+    color: white !important;
 }
 
 /* Notifikasi sukses */
 .notification.success {
-    background-color: #4caf50; 
+    background-color: #4caf50;
     border: 1px solid #388e3c;
 }
 
@@ -444,7 +444,7 @@ Header Style
 .background-header {
     background-color: #d4f2d3;
     border-radius: 0px 0px 25px 25px;
-    height: 80px !important; 
+    height: 80px !important;
     position: fixed !important;
     top: 0 !important;
     left: 0;
@@ -455,12 +455,12 @@ Header Style
 
 /* .header-area tetap besar saat scroll */
 .header-area {
-    position: fixed; 
+    position: fixed;
     background-color: #d4f2d3;
     top: 0px;
     left: 0;
     right: 0;
-    height: 80px; 
+    height: 80px;
     z-index: 100;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
     transition: all 0.5s ease 0s;
@@ -577,10 +577,10 @@ Header Style
 .header-area .main-nav .nav li:last-child a {
     border-radius: 23px;
     display: flex;
-    align-items: center; 
-    justify-content: center; 
+    align-items: center;
+    justify-content: center;
     border-radius: 23px;
-    padding: 5px 10px; 
+    padding: 5px 10px;
 }
 
 .header-area .main-nav .nav li:last-child a img {
@@ -1128,22 +1128,22 @@ ArticlesDetail Style
     font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #196D4Aff;
+    color: #196d4aff;
     text-align: center;
 }
 
-.authorDetail, .dateDetail {
+.authorDetail,
+.dateDetail {
     font-size: 0.9rem;
-    color: #196D4Aff;
+    color: #196d4aff;
     text-align: center;
     margin-bottom: 10px;
 }
 
 .image-containerDetail img {
     display: block;
-    margin: 0 auto; 
+    margin: 0 auto;
 }
-
 
 .main-imageDetail {
     width: 100%;
@@ -1154,22 +1154,22 @@ ArticlesDetail Style
 
 .captionDetail {
     font-size: 0.8rem;
-    color: #196D4Aff;
+    color: #196d4aff;
     font-style: italic;
     text-align: center;
-    margin: 10px 0; 
+    margin: 10px 0;
 }
 
 .contentDetail p {
     margin-bottom: 15px;
     text-align: justify;
     font-size: 1rem;
-    color: #196D4Aff;
+    color: #196d4aff;
     font-weight: 550;
 }
 
 .back-buttonDetail {
-    background-color: #196D4Aff;
+    background-color: #196d4aff;
     color: #fff;
     border: none;
     padding: 10px 15px;
@@ -1181,7 +1181,7 @@ ArticlesDetail Style
 
 .back-buttonDetail:hover {
     background-color: #94df33;
-    color: #196D4Aff;
+    color: #196d4aff;
     transition: all 0.3s;
 }
 
@@ -1449,60 +1449,60 @@ Events Style
     border-radius: 10px;
     box-shadow: 0 4px 5px #94df33;
     position: relative;
-    padding-bottom: 80px; 
+    padding-bottom: 80px;
 }
 
 .spesificDetail ul {
-    list-style: none; 
-    padding: 0; 
+    list-style: none;
+    padding: 0;
     margin: 20px;
     font-family: Arial, sans-serif;
 }
 
 .spesificDetail ul li {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    margin-bottom: 10px; 
-    padding: 10px 15px; 
-    border: 1px solid #94df33; 
-    border-radius: 5px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border: 1px solid #94df33;
+    border-radius: 5px;
     background-color: #d4f2d3;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .spesificDetail ul li span {
-    font-weight: bold; 
-    color: #196D4A; 
+    font-weight: bold;
+    color: #196d4a;
 }
 
 .spesificDetail ul li h4 {
-    margin: 0; 
-    color: #196D4Aff; 
+    margin: 0;
+    color: #196d4aff;
 }
 
 .spesificDetail ul li h6 {
-    font-size: 0.9rem; 
-    color: #196D4Aff;
+    font-size: 0.9rem;
+    color: #196d4aff;
 }
 
 .spesificDetail ul li:hover {
-    background-color: #e9f7f1; 
-    border-color: #196D4Aff;
-    transition: all 0.3s ease; 
+    background-color: #e9f7f1;
+    border-color: #196d4aff;
+    transition: all 0.3s ease;
 }
 
 .spesificDetail-button {
-    position: absolute; 
-    left: 50%; 
+    position: absolute;
+    left: 50%;
     bottom: 20px;
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
 }
 
 .spesificDetail-button button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #196D4Aff; 
+    background-color: #196d4aff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -1511,11 +1511,10 @@ Events Style
 }
 
 .spesificDetail-button button:hover {
-    background-color: #94df33; 
-    color: #196D4Aff;
+    background-color: #94df33;
+    color: #196d4aff;
     transition: all 0.3s;
 }
-
 
 /* 
 ---------------------------------------------
@@ -1646,11 +1645,11 @@ Books Style
     margin-bottom: 6px;
 }
 
-.books_item .down-content button{
+.books_item .down-content button {
     margin-top: 10px;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #196D4Aff; 
+    background-color: #196d4aff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -1658,9 +1657,9 @@ Books Style
     transition: background-color 0.3s ease;
 }
 
-.books_item .down-content button:hover{
-    background-color: #94df33; 
-    color: #196D4Aff;
+.books_item .down-content button:hover {
+    background-color: #94df33;
+    color: #196d4aff;
     transition: all 0.3s;
 }
 
@@ -1686,36 +1685,36 @@ BookDetails Leaderboard Style
 */
 /* Container utama untuk tampilan buku */
 .full-screen-container {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh; 
-    width: 100%; 
-    background-color: #fff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #fff;
 }
 
 /* Container body untuk buku */
 .bodyBookDetail {
-    height: 100%; 
+    height: 100%;
     margin: 0;
     display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    background-color: #fff; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
 }
 
 /* Tombol di atas */
 .top-button-container {
     width: 100%;
-    text-align: left; 
-    margin-bottom: 20px; 
+    text-align: left;
+    margin-bottom: 20px;
 }
 
 .top-button {
     padding: 10px 20px;
     font-size: 1rem;
-    background-color: #196D4A;
+    background-color: #196d4a;
     color: white;
     border: none;
     border-radius: 5px;
@@ -1725,10 +1724,9 @@ BookDetails Leaderboard Style
 
 .top-button:hover {
     background-color: #94df33;
-    color: #196D4Aff;
+    color: #196d4aff;
     transition: all 0.3s;
 }
-
 
 /* Container utama untuk tampilan buku */
 .bookDetail-container {
@@ -1739,9 +1737,9 @@ BookDetails Leaderboard Style
     background-color: #d4f2d3;
     border-radius: 10px;
     box-shadow: 0 4px 10px #94df33;
-    max-width: 900px; 
-    width: 100%; 
-    box-sizing: border-box; 
+    max-width: 900px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Gambar sampul buku */
@@ -1768,14 +1766,20 @@ BookDetails Leaderboard Style
 .bookDetail-title {
     font-size: 2rem;
     font-weight: bold;
-    color: #196D4Aff;
+    color: #196d4aff;
     margin-bottom: 10px;
 }
 
 /* Nama penulis */
 .bookDetail-author {
     font-size: 1.2rem;
-    color: #196D4Aff;
+    color: #196d4aff;
+    margin-bottom: 10px;
+}
+
+.bookDetail-category {
+    font-size: 1rem;
+    color: #196d4aff;
     margin-bottom: 10px;
 }
 
@@ -1783,14 +1787,14 @@ BookDetails Leaderboard Style
 .bookDetail-release-date,
 .bookDetail-price {
     font-size: 1rem;
-    color: #196D4Aff;
+    color: #196d4aff;
     margin-bottom: 10px;
 }
 
 /* Deskripsi buku */
 .bookDetail-description {
     font-size: 1rem;
-    color: #196D4Aff;
+    color: #196d4aff;
     line-height: 1.6;
     margin-bottom: 20px;
 }
@@ -1829,8 +1833,6 @@ BookDetails Leaderboard Style
     background-color: #e2f7e3;
 } */
 
-
-
 /* 
 ---------------------------------------------
 Donation Leaderboard Style
@@ -1844,21 +1846,21 @@ Donation Leaderboard Style
 }
 
 .full-screenDonation-container {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh; 
-    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
     background-color: #fff;
     padding: 20px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .bodyDonation {
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
-    width: 100%; 
+    width: 100%;
 }
 
 /* Container Form Donation */
@@ -1867,7 +1869,7 @@ Donation Leaderboard Style
     padding: 30px 40px;
     border-radius: 15px;
     max-width: 500px;
-    width: 100%; 
+    width: 100%;
     margin: 0 auto;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -1894,9 +1896,9 @@ Donation Leaderboard Style
     width: 100%;
     padding: 12px;
     border: 1px solid #d4e8d3;
-    border-radius: 10px; 
+    border-radius: 10px;
     font-size: 15px;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05); 
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
@@ -1909,19 +1911,19 @@ Donation Leaderboard Style
 
 /* Placeholder Styling */
 #book-name::placeholder {
-    color: #196D4Aff;
+    color: #196d4aff;
     font-style: italic;
 }
 #author-name::placeholder {
-    color: #196D4Aff;
+    color: #196d4aff;
     font-style: italic;
 }
 #donation-date::placeholder {
-    color: #196D4Aff;
+    color: #196d4aff;
     font-style: italic;
 }
 #book-quantity::placeholder {
-    color: #196D4Aff;
+    color: #196d4aff;
     font-style: italic;
 }
 
@@ -1929,13 +1931,13 @@ Donation Leaderboard Style
 .submitDonation-btn {
     display: block;
     width: 100%;
-    background: linear-gradient(135deg, #196d4a, #4caf50); 
+    background: linear-gradient(135deg, #196d4a, #4caf50);
     color: #fff;
     border: none;
     padding: 12px 0;
     font-size: 18px;
     font-weight: 600;
-    border-radius: 30px; 
+    border-radius: 30px;
     cursor: pointer;
     text-transform: uppercase;
     transition: all 0.3s ease;
@@ -1950,7 +1952,7 @@ Donation Leaderboard Style
 
 /* Form Group Spacing */
 .formDonation-group {
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
 /* Label Styling */
@@ -1961,7 +1963,6 @@ Donation Leaderboard Style
     color: #196d4a;
     font-size: 16px;
 }
-
 
 /* 
 ---------------------------------------------
@@ -2160,7 +2161,7 @@ Profile Style
 }
 
 .history-library .item ul li:first-child {
-    flex: 0 0 150px; 
+    flex: 0 0 150px;
 }
 
 .history-library .item ul li:last-child {

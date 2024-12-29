@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/book-index', [BookController::class, 'index'])->name('book.all');
 Route::post('/create-book', [BookController::class, 'store'])->name('book.create');
-Route::get('/create-book-page', [BookController::class, 'create'])->name('book.create-page');
+Route::get('/create-book-page/{id}', [BookController::class, 'create'])->name('book.create-page');
 Route::get('/get-book/{id}', [BookController::class, 'getbookById'])->name('book.get');
 Route::get('/get-book-categories/{id}', [BookController::class, 'getbooksByCategory'])->name('books.category');
 Route::get('/search-book', [BookController::class, 'search'])->name('book.search');

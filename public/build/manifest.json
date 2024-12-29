@@ -1,79 +1,13 @@
 {
-  "resources/css/animate.css": {
-    "file": "assets/animate-CzJS__TI.css",
-    "src": "resources/css/animate.css",
+  "resources/css/app.css": {
+    "file": "assets/app-BqfE1ry7.css",
+    "src": "resources/css/app.css",
     "isEntry": true
   },
-  "resources/css/bookber.css": {
-    "file": "assets/bookber-8jRVGjfJ.css",
-    "src": "resources/css/bookber.css",
-    "isEntry": true
-  },
-  "resources/css/bootstrap.min.css": {
-    "file": "assets/bootstrap-BcUrEMA8.css",
-    "src": "resources/css/bootstrap.min.css",
-    "isEntry": true
-  },
-  "resources/css/css-login-register/login-register.css": {
-    "file": "assets/login-register-ByJ3dGDt.css",
-    "src": "resources/css/css-login-register/login-register.css",
-    "isEntry": true
-  },
-  "resources/css/owl.css": {
-    "file": "assets/owl-C-J4T7XY.css",
-    "src": "resources/css/owl.css",
-    "isEntry": true
-  },
-  "resources/images/contact-1.png": {
-    "file": "assets/contact-1-LmX-Ktoj.png",
-    "src": "resources/images/contact-1.png"
-  },
-  "resources/js/bookber.js": {
-    "file": "assets/bookber-Cz8C9FA6.js",
-    "name": "bookber",
-    "src": "resources/js/bookber.js",
-    "isEntry": true
-  },
-  "resources/js/bootstrap.min.js": {
-    "file": "assets/bootstrap.min-DHq0wcQz.js",
-    "name": "bootstrap.min",
-    "src": "resources/js/bootstrap.min.js",
-    "isEntry": true
-  },
-  "resources/js/custom.js": {
-    "file": "assets/custom-DF-4YqZ1.js",
-    "name": "custom",
-    "src": "resources/js/custom.js",
-    "isEntry": true
-  },
-  "resources/js/jquery.min.js": {
-    "file": "assets/jquery.min-DwnxU6IY.js",
-    "name": "jquery.min",
-    "src": "resources/js/jquery.min.js",
-    "isEntry": true
-  },
-  "resources/js/js-login-register/counter.js": {
-    "file": "assets/counter-BWLXfKlH.js",
-    "name": "counter",
-    "src": "resources/js/js-login-register/counter.js",
-    "isEntry": true
-  },
-  "resources/js/js-login-register/isotope.min.js": {
-    "file": "assets/isotope.min-CnOvNssl.js",
-    "name": "isotope.min",
-    "src": "resources/js/js-login-register/isotope.min.js",
-    "isEntry": true
-  },
-  "resources/js/js-login-register/jquery.min.js": {
-    "file": "assets/jquery.min-Cuz4HeH6.js",
-    "name": "jquery.min",
-    "src": "resources/js/js-login-register/jquery.min.js",
-    "isEntry": true
-  },
-  "resources/js/js-login-register/login-register.js": {
-    "file": "assets/login-register-C5ayEcee.js",
-    "name": "login-register",
-    "src": "resources/js/js-login-register/login-register.js",
+  "resources/js/app.js": {
+    "file": "assets/app-z-Rg4TxU.js",
+    "name": "app",
+    "src": "resources/js/app.js",
     "isEntry": true
   }
 }

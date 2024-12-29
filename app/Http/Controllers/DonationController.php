@@ -4,37 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Models\Donation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DonationController extends Controller
 {
     public function index(){
-        $donations = Donation::paginate(10);
-        return view('donationsIndex', compact('donations'));
+        $donations = Donation::all();
+        return view('donations.donations-admin', compact('donations'));
     }
 
     public function create(){
-        return view('createDonation');
+        return view('donations.create-donation');
     }
 
-    public function store(Request $request){
+    public function store(Request $request, $EventId)
+    {
         $request->validate([
-            'BookId' => 'required|exists:book, BookId', 
-            'DonationDate' => 'required|date', 
-            'Quantity' => 'required|integer|gt:0', 
-            'UserId' => 'required|exists:user, UserId', 
-            'EventId' => 'required|exists:event, EventId'
+            'id' => 'required|exists:events,EventId',
         ]);
 
-    	$data = new Donation;
-        $data->BookId = $request->BookId;
-        $data->DonationDate = $request->DonationDate;
-        $data->Quantity = $request->Quantity;
-        $data->UserId = $request->UserId;
-        $data->EventId = $request->EventId;
-        $data->save();
-        return Redirect()->route('home');
-
+        $donation = Donation::create([
+            'EventId' => $EventId,
+            'UserId' => Auth::id(),
+            'DonationDate' => now(),
+        ]);
+    
+        return redirect()->route('book.create-page', ['id' => $donation->DonationId])
+                     ->with('success', 'Donation created successfully!');
     }
+    
 
     public function getDonationById($id){
         $donation = Donation::find($id);

@@ -1,40 +1,59 @@
-@extends('layouts.master')
+@extends('layouts1.user')
 
-@section('content')
-    <div class="container text-center">
-    <h1>{{ $category->BookCategoryName }}</h1>
-    <p>{{ $category->BookCategoryDescription}}</p>
+@section('title1', 'Book')
+
+@section('content1')
+<main>
+
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        </div>
     </div>
 
-    <div class="container mt-5 align-items-center justify-content-center">
-                <h1 class ="text-center">BOOK LIST</h1>
-                <table class="table table-bordered table-striped table-hover justify-content-center mt-3">
-                <thead class="thead-dark">
-                <tr>
-                    <th>Book Name</th>
-                    <th>Book Description</th>
-                    <th>Details</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @forelse ($books as $book)
-                        <tr>
-                            <td>{{ $book->BookTitle }}</td>
-                            <td>{{ $book->BookDescription}}</td>
-                            <td><a href="{{ route('book.get', ['id' => $book->BookId]) }}">Details</a></td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="4" class="text-center">There's nothing here...</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+    <section class="section courses" id="courses">
+        <div class="container">
 
-        <!-- <div class="d-flex justify-content-center align-items-center my-3 pt-10">
-            <div class="d-flex flex-column w-25 mt-10">
-                <a class="btn btn-primary" href="{{ route('category.updatePage', $category->category_id) }}">Update Category</a>
+            <div class="row book_box">
+                @foreach($books as $book)
+                <div class="col-lg-4 col-md-6 book_outer anakanak">
+                    <div class="books_item">
+                        <div class="thumb">
+                            <a href=""><img src="images/pp-book.png" alt=""></a>
+                            <span class="category">{{ $book->BookCategory->BookCategoryName}}</span>
+                        </div>
+                        <div class="down-content">
+                            <span class="author">{{ $book->BookAuthor}}</span>
+                            <h4>{{ $book->BookTitle}}</h4>
+                            <a href="{{ route('book.get', ['id' => $book->BookId]) }}"><button>Details</button></a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
             </div>
-        </div> -->
+
+            <div class="pagination-wrapper text-center mt-4">
+                <nav>
+                    <div class="pagination-wrapper text-center mt-4">
+                        {{ $books->links('pagination::bootstrap-4') }}
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="col-lg-12">
+            <p>Copyright © 2024 bookber. All rights reserved.</a></p>
+            </div>
+        </div>
+    </footer>
+    
+</main>
 @endsection

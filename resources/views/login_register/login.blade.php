@@ -5,18 +5,6 @@
 @section('content')
 <main class="bg-ijosusu flex items-center justify-center min-h-screen">
 
-    @if(session()->has('success'))
-    <div id="notification" class="notification success">
-        <p>{{ session()->get('success') }}</p>
-    </div>
-    @endif
-    
-    @if(session()->has('error'))
-    <div id="notification" class="notification error">
-        <p>{{ session()->get('error') }}</p>
-    </div>
-    @endif
-    
     <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
         <span class="dot"></span>
@@ -50,7 +38,7 @@
 
                     <div class="bg-white rounded-lg relative mb-8">
                         <div class="relative">
-                            <input type="email" id="email" name="email" class="peer input-field h-12 w-full px-4 py-2 border-2 border-fern-green rounded-lg text-fern-green placeholder-transparent focus:outline-none focus:ring-2 focus:ring-kelly-green focus:border-kelly-green" placeholder="Email" required />
+                            <input type="text" id="email" name="email" class="peer input-field h-12 w-full px-4 py-2 border-2 border-fern-green rounded-lg text-fern-green placeholder-transparent focus:outline-none focus:ring-2 focus:ring-kelly-green focus:border-kelly-green" placeholder="Email" required />
                             <label for="email" class="absolute left-4 -top-3.5 bg-white px-1 text-sm text-fern-green peer-placeholder-shown:text-base peer-placeholder-shown:text-fern-green peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-fern-green peer-focus:text-sm transition-all">
                                 Email
                             </label>
@@ -84,14 +72,14 @@
                             </div>
                             <span class="ml-3 text-sm font-normal text-fern-green">Keep me logged in</span>
                         </label>
-                        <a href="aforgetPassword" class="mr-4 text-sm font-medium text-fern-green hover:underline">Forget password?</a>
+                        <a href="forgetPassword" class="mr-4 text-sm font-medium text-fern-green hover:underline">Forget password?</a>
                     </div>
 
                     <button type="submit" class="w-full px-5 py-4 mb-3 text-xm font-medium leading-none transition duration-300 md:w-96 rounded-2xl text-dartmouth-green hover:text-white bg-muda-kelly-green hover:bg-muda-fern-green">Sign In</button>
 
                     <p class="text-sm leading-relaxed text-fern-green">
                         Not registered yet? 
-                        <a href="aregister" class="font-bold text-fern-green hover:underline">Create an Account</a>
+                        <a href="register" class="font-bold text-fern-green hover:underline">Create an Account</a>
                     </p>
                 </form>
             </div>

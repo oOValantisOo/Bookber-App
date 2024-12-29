@@ -3,23 +3,30 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Event;
 use Exception;
 
 class UserController extends Controller
 {
+    public function adminHome(){
+        $users = User::all();
+        return view('home.users', compact('users'));
+    }
+
     function updateProfile(){
         return view("profile.update_profile");
     }
+
     function profile(){
-        return view("profile.profile");
+        $user = Auth::user();
+        return view('profile.profile', compact('user'));
     }
 
     function homeGuest(){
@@ -34,42 +41,37 @@ class UserController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
-    public function googlecallback(){
-        try {
-      
-            $account = Socialite::driver('google')->user();
-       
-            $findaccount = User::where('google_id', $account->id)->first();
-       
-            if($findaccount)
+    public function googlecallback()
+{
+    try {
+        $account = Socialite::driver('google')->user();
 
-            {
-       
-                Auth::login($findaccount);
-      
-                return redirect()->intended('ahome');
-       
+        $findaccount = User::where('email', $account->email)->first();
+
+        if ($findaccount) {
+            if (!$findaccount->google_id) {
+                $findaccount->google_id = $account->id;
+                $findaccount->save();
             }
 
-            else
+            Auth::login($findaccount);
+            return view('home.home-user');
+        } else {
+            $newUser = User::create([
+                'name' => $account->name,
+                'email' => $account->email,
+                'google_id' => $account->id,
+                'password' => bcrypt('123456dummy') 
+            ]);
 
-            {
-                $newAccount = Accounts::create([
-                    'name' => $account->name,
-                    'email' => $account->email,
-                    'google_id'=> $account->id,
-                    'password' => encrypt('123456dummy')
-                ]);
-      
-                Auth::login($newAccount);
-      
-                return redirect()->intended('ahome');
-            }
-      
-        } catch (Exception $e) {
-            dd($e->getMessage());
+            Auth::login($newUser);
+            return view('home.home-user');
         }
+    } catch (\Exception $e) {
+        dd($e->getMessage());
     }
+}
+
 
     function resetPassword($token){
         return view("login_register.new-password", compact('token'));
@@ -120,17 +122,27 @@ class UserController extends Controller
         return view("login_register.login");
     }
 
-    function loginPost(Request $request){
-        $account = User::where('email','=',$request->email)->first();
-        if($account && $request->password == $account->password){
-            session(['user_name' => $account->name]);
-            return redirect(route('ahome'))
-            ->with('success', 'Selamat Datang, ' . $account->name . '!');
-        }else{
-            return redirect(route('login'))
-            ->with('error', 'yah ngak bisa login!');
+    public function loginPost(Request $request)
+    {
+        if ($request->email === env('ADMIN_EMAIL') && $request->password === env('ADMIN_PASSWORD')) {
+            return redirect()->route('home.admin');
         }
+
+        $credential = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        if (Auth::attempt($credential)) {
+            $request->session()->regenerate();
+            return redirect()->route('home.user');
+        }
+
+        return back()->withErrors([
+            'email' => __('auth.failed'),
+        ])->onlyInput('email');
     }
+    
 
     function register(){
         return view("login_register.register");

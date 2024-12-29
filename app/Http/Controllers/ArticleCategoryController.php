@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ArticleCategory;
+use App\Models\Article;
 
 class ArticleCategoryController extends Controller
 {
@@ -37,8 +38,8 @@ class ArticleCategoryController extends Controller
 
     public function getCategoryById($id){
         $category = ArticleCategory::where('ArticleCategoryId','=', $id)->first();
-        $articles = Article::where('ArticleCategoryId', '=', $id)->get();
-        return view('articleCategory', compact('category', 'articles'));
+        $articles = Article::where('ArticleCategoryId', '=', $id)->paginate(10);
+        return view('articles.articles-category', compact('category', 'articles'));
     }
 
     public function getCategoryByName($name){
