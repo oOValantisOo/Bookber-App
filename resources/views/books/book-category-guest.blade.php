@@ -1,4 +1,4 @@
-@extends('layouts1.user')
+@extends('layouts1.guest')
 
 @section('title1', 'Book')
 
@@ -30,7 +30,7 @@
                         <div class="down-content">
                             <span class="author">{{ $book->BookAuthor}}</span>
                             <h4>{{ $book->BookTitle}}</h4>
-                            <a href="{{ route('book.get', ['id' => $book->BookId]) }}"><button>Details</button></a>
+                            <a href="{{ route('book-guest.get', ['id' => $book->BookId]) }}"><button>Details</button></a>
                         </div>
                     </div>
                 </div>

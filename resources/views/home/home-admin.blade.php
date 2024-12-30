@@ -62,7 +62,7 @@
                             <td>{{ $book->BookId }}</td>
                             <td>{{ $book->BookAuthor }}</td>
                             <td>{{ $book->Donation->DonationDate }}</td>
-                            <td><a href="{{ route('book.get', ['id' => $book->BookId]) }}">Go See Details</a></td>
+                            <td><a href="{{ route('book-admin.get', ['id' => $book->BookId]) }}">Go See Details</a></td>
                         </tr>
                     @empty
                         <tr>

@@ -4,7 +4,7 @@
 
 @section('content1')
 <main>
-    
+
     <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
         <span class="dot"></span>
@@ -18,23 +18,13 @@
 
     <section class="section courses" id="courses">
         <div class="container">
-            <ul class="book_filter">
-                <li>
-                    <a class="is_active" href="#!" data-filter="*">Show All</a>
-                </li>
-                @foreach ($book_categories as $category)
-                    <li>
-                        <a href="{{ route('book-category-user.get', ['id' => $category->BookCategoryId]) }}">{{$category->BookCategoryName}}</a>
-                    </li>
-                @endforeach
-            </ul>
 
             <div class="row book_box">
                 @foreach($books as $book)
                 <div class="col-lg-4 col-md-6 book_outer anakanak">
                     <div class="books_item">
                         <div class="thumb">
-                            <img src="images/pp-book.png" alt=""></a>
+                            <a href=""><img src="images/pp-book.png" alt=""></a>
                             <span class="category">{{ $book->BookCategory->BookCategoryName}}</span>
                         </div>
                         <div class="down-content">

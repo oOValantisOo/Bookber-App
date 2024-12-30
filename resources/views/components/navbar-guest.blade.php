@@ -9,11 +9,11 @@
                         </a>
 
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#home" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="{{ route('home.guest')}}" class="active">Home</a></li>
                             <li class="scroll-to-section"><a href="#about-us">About us</a></li>
                             <li class="scroll-to-section"><a href="{{ route('event-guest.all') }}">Events</a></li>
-                            <li class="scroll-to-section"><a href="{{ route('book.all') }}">Books</a></li>
-                            <li class="scroll-to-section"><a href="{{ route('article.all') }}">Articles</a></li>
+                            <li class="scroll-to-section"><a href="{{ route('book-guest.all') }}">Books</a></li>
+                            <li class="scroll-to-section"><a href="{{ route('article-guest.all') }}">Articles</a></li>
                             <li class="scroll-to-section"><a href="{{ route('registerNotif') }}">Donation</a></li>
                             <li class="scroll-to-section"><a href="login" class="actived">Login Now!</a></li>
 

@@ -1,4 +1,4 @@
-@extends('layouts1.user')
+@extends('layouts1.guest')
 
 @section('title1', 'BookDetail')
 
@@ -19,7 +19,7 @@
     <div class="full-screen-container">
         <div class="bodyBookDetail">
             <div class="top-button-container">
-                <a href="{{ route('book.all') }}"><button class="top-button">Back</button></a>
+                <a href="{{ route('book-guest.all') }}"><button class="top-button">Back</button></a>
             </div>
 
             <div class="bookDetail-container">

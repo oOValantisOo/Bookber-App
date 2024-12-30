@@ -1,10 +1,10 @@
-@extends('layouts1.user')
+@extends('layouts1.admin')
 
 @section('title1', 'Book')
 
 @section('content1')
 <main>
-    
+
     <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
         <span class="dot"></span>
@@ -20,17 +20,17 @@
         <div class="container">
 
             <div class="row book_box">
-                @foreach($articles as $article)
+                @foreach($books as $book)
                 <div class="col-lg-4 col-md-6 book_outer anakanak">
                     <div class="books_item">
                         <div class="thumb">
                             <a href=""><img src="images/pp-book.png" alt=""></a>
-                            <span class="category">{{ $article->ArticleCategory->ArticleCategoryName}}</span>
+                            <span class="category">{{ $book->BookCategory->BookCategoryName}}</span>
                         </div>
                         <div class="down-content">
-                            <span class="author">{{ $article->Writer}}</span>
-                            <h4>{{ $article->ArticleTitle}}</h4>
-                            <a href="{{ route('article.get', ['id' => $article->ArticleId]) }}"><button>Details</button></a>
+                            <span class="author">{{ $book->BookAuthor}}</span>
+                            <h4>{{ $book->BookTitle}}</h4>
+                            <a href="{{ route('book-admin.get', ['id' => $book->BookId]) }}"><button>Details</button></a>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
             <div class="pagination-wrapper text-center mt-4">
                 <nav>
                     <div class="pagination-wrapper text-center mt-4">
-                        {{ $articles->links('pagination::bootstrap-4') }}
+                        {{ $books->links('pagination::bootstrap-4') }}
                     </div>
                 </nav>
             </div>

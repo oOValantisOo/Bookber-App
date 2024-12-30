@@ -1,4 +1,4 @@
-@extends('layouts1.guest')
+@extends('layouts1.admin')
 
 @section('title1', 'ArticlesDetail')
 
@@ -17,7 +17,7 @@
     </div>
 
     <div class="containerDetail">
-        <button class="back-buttonDetail" onclick="window.location.href='{{ route('article.all') }}'">
+        <button class="back-buttonDetail" onclick="window.location.href='{{ route('article-admin.all') }}'">
             Kembali
         </button>
 

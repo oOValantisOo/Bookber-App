@@ -1,4 +1,4 @@
-@extends('layouts1.guest')
+@extends('layouts1.admin')
 
 @section('title1', 'Articles')
 
@@ -13,7 +13,6 @@
             <th>Username</th>
             <th>Email</th>
             <th>Password</th>
-            <th>Details</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,7 +22,6 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->password}}</td>
-                            <td><a href="{{ route('user.get', ['id' => $user->id]) }}">Go See Details</a></td>
                         </tr>
                     @empty
                         <tr>

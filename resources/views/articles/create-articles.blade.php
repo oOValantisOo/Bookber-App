@@ -1,6 +1,8 @@
 @extends('layouts1.admin')
 
-@section('content')
+@section('title1', 'Articles')
+
+@section('content1')
     <div class="container mt-5">
         <h2>Create a New Article</h2>
         <form action="{{ route('article.create') }}" method="POST" class="w-50">

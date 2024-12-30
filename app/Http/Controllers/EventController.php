@@ -7,6 +7,7 @@ use App\Models\EventCategory;
 use App\Models\Donation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -32,21 +33,28 @@ class EventController extends Controller
         return view('events.events-user', compact('events', 'event_categories'));
     }
 
-    public function create(){
-        $categories = EventCategory::All();
-        return view('createEvent', compact('categories'));
+    public function indexAdmin(){
+        $events = Event::paginate(10);
+        $event_categories = EventCategory::all();
+        return view('events.events-admin', compact('events', 'event_categories'));
     }
 
-    public function getEventByIdUser($id){
-        $event = Event::find($id);
+    public function create(){
+        $categories = EventCategory::All();
+        return view('events.create-event', compact('categories'));
+    }
+
+    public function getEventByIdUser($event_id){
+        $event = Event::find($event_id);
 
         $entries = Donation::select('UserId', DB::raw('SUM(Quantity) as total_quantity'))
-        ->where('EventId', $id)
+        ->where('EventId', $event_id)
         ->groupBy('UserId')
         ->orderByDesc('total_quantity')
         ->get();
 
-        $donations = Donation::where('UserId', '=', $id)->get();
+        $user = Auth::user();
+        $donations = Donation::where('UserId', '=', $user->id)->get();
 
         if($event){
             return view('events.event-user', compact('event', 'entries', 'donations'));
@@ -91,7 +99,7 @@ class EventController extends Controller
             'EventDescription' => 'required|max:255',
             'StartDate' => ['required', 'date', 'after:' . now()->addWeek()->format('Y-m-d')],
             'EndDate' => 'required|date|after:StartDate',
-            'EventCategoryId' => 'required|exists:EventCategory, EventCategoryId',
+            'EventCategoryId' => 'required|exists:event_categories,EventCategoryId',
         ], [
             'StartDate' => 'Starting date has to be at least 1 week after the event is created',
             'EndDate' => 'End date has to be after the starting date',
@@ -105,7 +113,7 @@ class EventController extends Controller
             $data->EventCategoryId = $request->EventCategoryId;
             $data->save();
 
-        return redirect()->route('eventsIndex')->with('Success', 'Event created successfully!');
+        return redirect()->route('event-admin.all')->with('Success', 'Event created successfully!');
     }
 
     public function updatePage($id){

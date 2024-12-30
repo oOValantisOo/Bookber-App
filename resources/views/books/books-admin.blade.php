@@ -24,7 +24,7 @@
                 </li>
                 @foreach ($book_categories as $category)
                     <li>
-                        <a href="{{ route('book-category.get', ['id' => $category->BookCategoryId]) }}">{{$category->BookCategoryName}}</a>
+                        <a href="{{ route('book-category-admin.get', ['id' => $category->BookCategoryId]) }}">{{$category->BookCategoryName}}</a>
                     </li>
                 @endforeach
             </ul>
@@ -40,7 +40,7 @@
                         <div class="down-content">
                             <span class="author">{{ $book->BookAuthor}}</span>
                             <h4>{{ $book->BookTitle}}</h4>
-                            <a href="{{ route('book.get', ['id' => $book->BookId]) }}"><button>Details</button></a>
+                            <a href="{{ route('book-admin.get', ['id' => $book->BookId]) }}"><button>Details</button></a>
                         </div>
                     </div>
                 </div>
@@ -53,12 +53,6 @@
                         {{ $books->links('pagination::bootstrap-4') }}
                     </div>
                 </nav>
-            </div>
-
-            <div class="d-flex justify-content-center align-items-center my-3 pt-10">
-                <div class="d-flex flex-column w-25 mt-10">
-                    <a class="btn btn-primary mb-2" href="{{ route('book.create-page') }}">Create Book</a>
-                </div>
             </div>
 
         </div>

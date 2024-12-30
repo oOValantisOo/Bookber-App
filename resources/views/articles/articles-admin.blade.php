@@ -26,7 +26,7 @@
                 </li>
                 @foreach ($article_categories as $category)
                     <li>
-                        <a href="{{ route('article-category.get', ['id' => $category->ArticleCategoryId]) }}">{{$category->ArticleCategoryName}}</a>
+                        <a href="{{ route('article-category-admin.get', ['id' => $category->ArticleCategoryId]) }}">{{$category->ArticleCategoryName}}</a>
                     </li>
                 @endforeach
             </ul>
@@ -42,7 +42,7 @@
                         <div class="down-content">
                             <span class="author">{{ $article->ArticleTitle}}</span>
                             <h4>{{ $article->ArticleDescription}}</h4>
-                            <a href="{{ route('article.get', ['id' => $article->ArticleId]) }}"><button>Read More</button></a>
+                            <a href="{{ route('article-admin.get', ['id' => $article->ArticleId]) }}"><button>Read More</button></a>
                         </div>
                     </div>
                 </div>

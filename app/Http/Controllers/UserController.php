@@ -15,9 +15,9 @@ use Exception;
 
 class UserController extends Controller
 {
-    public function adminHome(){
+    public function users(){
         $users = User::all();
-        return view('home.users', compact('users'));
+        return view('profile.users', compact('users'));
     }
 
     function updateProfile(){

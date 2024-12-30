@@ -27,6 +27,6 @@ class HomeController extends Controller{
 
     public function user(){
         $events = Event::latest()->take(10)->get();
-        return view('home-user', compact('events'));
+        return view('home.home-user', compact('events'));
     }
 }

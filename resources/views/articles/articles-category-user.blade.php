@@ -18,29 +18,19 @@
 
     <section class="section courses" id="courses">
         <div class="container">
-            <ul class="book_filter">
-                <li>
-                    <a class="is_active" href="#!" data-filter="*">Show All</a>
-                </li>
-                @foreach ($book_categories as $category)
-                    <li>
-                        <a href="{{ route('book-category-user.get', ['id' => $category->BookCategoryId]) }}">{{$category->BookCategoryName}}</a>
-                    </li>
-                @endforeach
-            </ul>
 
             <div class="row book_box">
-                @foreach($books as $book)
+                @foreach($articles as $article)
                 <div class="col-lg-4 col-md-6 book_outer anakanak">
                     <div class="books_item">
                         <div class="thumb">
-                            <img src="images/pp-book.png" alt=""></a>
-                            <span class="category">{{ $book->BookCategory->BookCategoryName}}</span>
+                            <a href=""><img src="images/pp-book.png" alt=""></a>
+                            <span class="category">{{ $article->ArticleCategory->ArticleCategoryName}}</span>
                         </div>
                         <div class="down-content">
-                            <span class="author">{{ $book->BookAuthor}}</span>
-                            <h4>{{ $book->BookTitle}}</h4>
-                            <a href="{{ route('book-user.get', ['id' => $book->BookId]) }}"><button>Details</button></a>
+                            <span class="author">{{ $article->Writer}}</span>
+                            <h4>{{ $article->ArticleTitle}}</h4>
+                            <a href="{{ route('article-user.get', ['id' => $article->ArticleId]) }}"><button>Details</button></a>
                         </div>
                     </div>
                 </div>
@@ -50,7 +40,7 @@
             <div class="pagination-wrapper text-center mt-4">
                 <nav>
                     <div class="pagination-wrapper text-center mt-4">
-                        {{ $books->links('pagination::bootstrap-4') }}
+                        {{ $articles->links('pagination::bootstrap-4') }}
                     </div>
                 </nav>
             </div>

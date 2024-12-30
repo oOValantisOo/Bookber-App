@@ -9,7 +9,7 @@ use App\Models\Article;
 class ArticleCategoryController extends Controller
 {
     public function index(){
-        $categories = Category::all();
+        $article_categories = Category::all();
         return view('articleCategories', compact('categories'));
     }
 
@@ -36,10 +36,22 @@ class ArticleCategoryController extends Controller
         return Redirect()->route('home');
     }
 
-    public function getCategoryById($id){
-        $category = ArticleCategory::where('ArticleCategoryId','=', $id)->first();
+    public function getCategoryByIdGuest($id){
+        $article_category = ArticleCategory::where('ArticleCategoryId','=', $id)->first();
         $articles = Article::where('ArticleCategoryId', '=', $id)->paginate(10);
-        return view('articles.articles-category', compact('category', 'articles'));
+        return view('articles.articles-category-guest', compact('article_category', 'articles'));
+    }
+
+    public function getCategoryByIdUser($id){
+        $article_category = ArticleCategory::where('ArticleCategoryId','=', $id)->first();
+        $articles = Article::where('ArticleCategoryId', '=', $id)->paginate(10);
+        return view('articles.articles-category-user', compact('article_category', 'articles'));
+    }
+
+    public function getCategoryByIdAdmin($id){
+        $article_category = ArticleCategory::where('ArticleCategoryId','=', $id)->first();
+        $articles = Article::where('ArticleCategoryId', '=', $id)->paginate(10);
+        return view('articles.articles-category-admin', compact('article_category', 'articles'));
     }
 
     public function getCategoryByName($name){

@@ -1,6 +1,9 @@
 @extends('layouts1.admin')
 
-@section('content')
+@section('title1', 'EventDetail')
+
+@section('content1')
+
     <div class="container mt-5">
         <h2>Create a New Event</h2>
         <form action="{{ route('event.create') }}" method="POST" class="w-50">
@@ -14,7 +17,7 @@
                 <textarea class="form-control" id="EventDescription" name="EventDescription" rows="3" required></textarea>
             </div>
             <div class="form-floating">
-                <input type="startDate" class="form-control" id="StartDate" name="StartDate" placeholder="MM/DD/YYYY">
+                <input type="date" class="form-control" id="StartDate" name="StartDate" placeholder="MM/DD/YYYY">
                 <label for="startDate">Start Date</label>
             </div>
             <div class="form-floating">

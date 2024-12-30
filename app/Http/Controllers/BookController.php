@@ -9,11 +9,25 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index()
+    public function indexGuest()
+    {
+        $books = Book::paginate(10); 
+        $book_categories = BookCategory::all();
+        return view('books.books-guest', compact('books', 'book_categories'));
+    }
+
+    public function indexUser()
     {
         $books = Book::paginate(10); 
         $book_categories = BookCategory::all();
         return view('books.books-user', compact('books', 'book_categories'));
+    }
+
+    public function indexAdmin()
+    {
+        $books = Book::paginate(10); 
+        $book_categories = BookCategory::all();
+        return view('books.books-admin', compact('books', 'book_categories'));
     }
 
     public function create(Request $request)
@@ -33,6 +47,10 @@ class BookController extends Controller
             'DonationId' => 'required|exists:donations,DonationId'
         ]);
 
+        $donation = Donation::find($request->DonationId);
+        $donation->Quantity+=1;
+        $donation->save();
+
         $data = new Book;
         $data->BookTitle = $request->BookTitle;
         $data->BookAuthor = $request->BookAuthor;
@@ -45,12 +63,34 @@ class BookController extends Controller
         return redirect()->route('event-user.all');
     }
 
-    public function getBookById($id)
+    public function getBookByIdGuest($id)
     {
         $book = Book::find($id); 
 
         if ($book) {
-            return view('books.book-details', compact('book'));
+            return view('books.book-details-guest', compact('book'));
+        } else {
+            return redirect()->route('booksIndex')->with('error', 'Book not found!');
+        }
+    }
+
+    public function getBookByIdUser($id)
+    {
+        $book = Book::find($id); 
+
+        if ($book) {
+            return view('books.book-details-user', compact('book'));
+        } else {
+            return redirect()->route('booksIndex')->with('error', 'Book not found!');
+        }
+    }
+
+    public function getBookByIdAdmin($id)
+    {
+        $book = Book::find($id); 
+
+        if ($book) {
+            return view('books.book-details-admin', compact('book'));
         } else {
             return redirect()->route('booksIndex')->with('error', 'Book not found!');
         }

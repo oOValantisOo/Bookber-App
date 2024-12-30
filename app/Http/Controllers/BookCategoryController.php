@@ -36,11 +36,25 @@ class BookCategoryController extends Controller
         return Redirect()->route('home');
     }
 
-    public function getCategoryById($id){
+    public function getCategoryByIdGuest($id){
         $book_category = BookCategory::where('BookCategoryId','=', $id)->first();
         $books = Book::where('BookCategoryId', '=', $id)->paginate(10);
-        return view('books.book-category', compact('book_category', 'books'));
+        return view('books.book-category-guest', compact('book_category', 'books'));
     }
+
+    public function getCategoryByIdUser($id){
+        $book_category = BookCategory::where('BookCategoryId','=', $id)->first();
+        $books = Book::where('BookCategoryId', '=', $id)->paginate(10);
+        return view('books.book-category-user', compact('book_category', 'books'));
+    }
+
+
+    public function getCategoryByIdAdmin($id){
+        $book_category = BookCategory::where('BookCategoryId','=', $id)->first();
+        $books = Book::where('BookCategoryId', '=', $id)->paginate(10);
+        return view('books.book-category-admin', compact('book_category', 'books'));
+    }
+
 
     public function getCategoryByName($name){
         $category = BookCategory ::where('BookCategoryName','=', $name)->get();

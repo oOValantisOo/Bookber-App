@@ -36,10 +36,22 @@ class EventCategoryController extends Controller
         return Redirect()->route('home');
     }
 
-    public function getCategoryById($id){
+    public function getCategoryByIdGuest($id){
         $category = EventCategory::where('EventCategoryId','=', $id)->first();
         $events = Event::where('EventCategoryId', '=', $id)->get();
-        return view('eventCategory', compact('event_category', 'events'));
+        return view('events.event-category-guest', compact('event_category', 'events'));
+    }
+
+    public function getCategoryByIdUser($id){
+        $category = EventCategory::where('EventCategoryId','=', $id)->first();
+        $events = Event::where('EventCategoryId', '=', $id)->get();
+        return view('events.event-category-user', compact('event_category', 'events'));
+    }
+
+    public function getCategoryByIdAdmin($id){
+        $category = EventCategory::where('EventCategoryId','=', $id)->first();
+        $events = Event::where('EventCategoryId', '=', $id)->get();
+        return view('events.event-category-admin', compact('event_category', 'events'));
     }
 
     public function getCategoryByName($name){

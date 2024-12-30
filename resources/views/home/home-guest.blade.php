@@ -206,24 +206,6 @@
             </div>
         </div>
     </div>
-    
-
-    {{-- <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="section-heading">
-                    <li><a href="sign"><h2>Donation Leaderbord</h2></a></li>
-
-                </div>
-            </div>
-            
-            <div class="col-lg-12">
-                <div class="page-content">
-                    <h2>halloguys</h2>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 
     <footer>
         <div class="container">

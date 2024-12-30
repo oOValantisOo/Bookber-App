@@ -16,9 +16,22 @@
         </div>
     </div>
 
-    <div class="section events" id="events">
+    
+
+    <section class="section courses" id="courses">
         <div class="container">
-        <div class="row article_box">
+            <ul class="book_filter">
+                <li>
+                    <a class="is_active" href="#!" data-filter="*">Show All</a>
+                </li>
+                @foreach ($article_categories as $category)
+                    <li>
+                        <a href="{{ route('article-category-guest.get', ['id' => $category->ArticleCategoryId]) }}">{{$category->ArticleCategoryName}}</a>
+                    </li>
+                @endforeach
+            </ul>
+
+            <div class="row book_box">
                 @foreach($articles as $article)
                 <div class="col-lg-4 col-md-6 book_outer anakanak">
                     <div class="books_item">
@@ -27,15 +40,13 @@
                             <span class="category">{{ $article->ArticleCategory->ArticleCategoryName}}</span>
                         </div>
                         <div class="down-content">
-                            <span class="author">{{ $article->ArticleDescription}}</span>
-                            <h4>{{ $article->ArticleTitle}}</h4>
-                            <a href="{{ route('article.get', ['id' => $article->ArticleId]) }}"><button>Details</button></a>
+                            <span class="author">{{ $article->ArticleTitle}}</span>
+                            <h4>{{ $article->ArticleDescription}}</h4>
+                            <a href="{{ route('article-guest.get', ['id' => $article->ArticleId]) }}"><button>Read More</button></a>
                         </div>
                     </div>
                 </div>
                 @endforeach
-            </div>
-
             </div>
 
             <div class="pagination-wrapper text-center mt-4">
@@ -45,9 +56,14 @@
                     </div>
                 </nav>
             </div>
-        </div>
-    </div>
 
+            <div class="d-flex justify-content-center align-items-center my-3 pt-10">
+                <div class="d-flex flex-column w-25 mt-10">
+                <a class="btn btn-primary mb-2" href="{{ route('registerNotif') }}">Create your own article!</a>
+                </div>
+            </div>
+        </div>
+    </section>
     <footer>
         <div class="container">
             <div class="col-lg-12">
