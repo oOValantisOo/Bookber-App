@@ -1,0 +1,24 @@
+services:
+  app:
+    build:
+      context: . # Dockerfile in the current directory
+    container_name: bookber-app
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8080:80"
+    environment:
+      # Laravel environment settings
+      APP_ENV: production
+      APP_DEBUG: false # Disable debug mode for security
+      APP_KEY: base64:mVKoKny9GpBDG28PlgQAEcPKeXhnewYb7B2/V5XQwtA= # Replace with `php artisan key:generate` output
+      DB_CONNECTION: mysql
+      DB_HOST: bookber-bookber.e.aivencloud.com
+      DB_PORT: 26448
+      DB_DATABASE: defaultdb
+      DB_USERNAME: avnadmin
+      DB_PASSWORD: AVNS_9qeUtvccUKBvsfksmBR
+    restart: always # Restart the container automatically if it fails
+
+volumes:
+  database:
